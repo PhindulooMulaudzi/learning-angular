@@ -7,7 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello() :  Rooms[] {
+  getHello(): Rooms[] {
     return this.appService.getRoomsList();
   }
 
@@ -22,8 +22,7 @@ export class AppController {
   }
 
   @Delete()
-  deleteRooms(roomNumber: number): Rooms[] { 
+  deleteRooms(roomNumber: number): Rooms[] {
     return this.appService.deleteRooms(roomNumber);
   }
-
 }

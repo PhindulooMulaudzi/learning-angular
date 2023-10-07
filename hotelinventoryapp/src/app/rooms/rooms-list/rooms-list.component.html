@@ -10,6 +10,7 @@
         <th>Checkin Time</th>
         <th>Rating</th>
         <th>Select Room</th>
+        <th>Delete Room</th>
     </tr>
     <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of rooms; let e=even; let o=odd; let i=index">
         <td>{{i | percent}}</td>
@@ -23,5 +24,6 @@
         <td>
             <button class="btn btn-primary" (click)="selectRoom(room)">Select</button>
         </td>
+        <td><button class="btn btn-primary" (click)="deleteRoom(room)">Delete</button></td>
     </tr>
 </table>

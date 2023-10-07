@@ -30,9 +30,14 @@ export class RoomsListComponent implements OnInit, OnChanges, OnDestroy {
   @Input() rooms: RoomType[] = [];
   @Input() title: string = '';
   @Output() selectedRoom = new EventEmitter<RoomType>();
+  @Output() deletedRoom = new EventEmitter<RoomType>();
 
   selectRoom(room: RoomType): void {
     this.selectedRoom.emit(room);
+  }
+
+  deleteRoom(room: RoomType): void {
+    this.deletedRoom.emit(room);
   }
 
   ngOnDestroy(): void {

@@ -19,11 +19,14 @@ Number of Rooms:
     <button class="btn btn-primary" (click)="addRoom()">Add Room</button>
 </div>
 
-<div *ngIf="hideRooms">
-    <app-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+<!-- The api we are using is not that great, it doesnt keep persistance, so cant repeatedly delete -->
+<div *ngIf="!hideRooms">
+    <app-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)" (deletedRoom)="deletedRoom($event)"></app-rooms-list>
 </div>
 
 <!-- <div *ngIf="rooms.availableRooms > 0">
 <app-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
 </div> -->
 <button class="btn btn-primary" (click)="toggle()">Toggle</button>
+<br>
+<button class="btn btn-primary" (click)="editRoom()">Edit Room</button>

@@ -43,18 +43,15 @@ export class AppService {
   }
 
   addRooms(rooms: Rooms): Rooms[] {
-    return [
-      ...this.getRoomsList(),
-      rooms,
-    ];
+    return [...this.getRoomsList(), rooms];
   }
 
   deleteRooms(roomNumber: number): Rooms[] {
-    return this.getRoomsList().filter(room => room.roomNumber !== roomNumber);
+    return this.getRoomsList().filter((room) => room.roomNumber !== roomNumber);
   }
 
   editRooms(rooms: Rooms): Rooms[] {
-    return this.getRoomsList().map(room => {
+    return this.getRoomsList().map((room) => {
       if (room.roomNumber === rooms.roomNumber) {
         return rooms;
       }
