@@ -19,7 +19,11 @@ Number of Rooms:
     <button class="btn btn-primary" (click)="addRoom()">Add Room</button>
 </div>
 
-<div *ngIf="rooms.availableRooms > 0">
-<app-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+<div *ngIf="hideRooms">
+    <app-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
 </div>
+
+<!-- <div *ngIf="rooms.availableRooms > 0">
+<app-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+</div> -->
 <button class="btn btn-primary" (click)="toggle()">Toggle</button>
