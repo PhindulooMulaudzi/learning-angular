@@ -3,9 +3,11 @@ import {
   Component,
   ElementRef,
   OnInit,
+  Optional,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { LoggerService } from './logger.service';
 import { RoomsComponent } from './rooms/rooms.component';
 
 @Component({
@@ -17,6 +19,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.name.nativeElement.innerText = 'Hilton Hotel'; // its static so will work
     //otherwise just always use ngAfterViewInit
+    this.loggerService?.log('AooComponent.ngOnInit()');
   }
 
   title = 'hotelinventoryapp';
@@ -29,4 +32,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   @ViewChild('name', { static: true }) name!: ElementRef;
+
+  constructor(@Optional() private loggerService: LoggerService) {}
 }

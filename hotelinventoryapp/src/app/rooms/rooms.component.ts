@@ -6,6 +6,7 @@ import {
   OnDestroy,
   OnInit,
   QueryList,
+  SkipSelf,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
@@ -86,7 +87,7 @@ export class RoomsComponent
   @ViewChildren(HeaderComponent)
   headerChildrenComponent!: QueryList<HeaderComponent>;
 
-  constructor(private roomService: RoomsService) {
+  constructor(@SkipSelf() private roomService: RoomsService) {
     this.roomList = roomService.getRooms();
   }
 }
