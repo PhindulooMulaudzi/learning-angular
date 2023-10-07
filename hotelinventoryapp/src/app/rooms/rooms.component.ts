@@ -1,4 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  DoCheck,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
+import { HeaderComponent } from '../header/header.component';
 import { Room, RoomType } from './rooms';
 
 @Component({
@@ -6,12 +16,21 @@ import { Room, RoomType } from './rooms';
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss'],
 })
-export class RoomsComponent implements OnInit {
+export class RoomsComponent
+  implements OnInit, DoCheck, AfterViewInit, AfterViewChecked
+{
   constructor() {}
+
+  ngAfterViewChecked(): void {}
+
+  ngDoCheck(): void {
+    console.log('on changes called...');
+  }
+
   roomList: RoomType[] = [];
   hotelName: string = 'Hilton Hotel';
   numberOfRooms = 10;
-
+  title: string = 'Room list';
   selectedRoom!: RoomType;
 
   rooms: Room = {
@@ -23,9 +42,12 @@ export class RoomsComponent implements OnInit {
   hideRooms: boolean = false;
   toggle(): void {
     this.hideRooms = !this.hideRooms;
+    this.title = 'Rooms List';
   }
 
   ngOnInit(): void {
+    // console.log(this.headerComponent);
+
     this.roomList = [
       {
         roomNumber: 1,
@@ -84,4 +106,18 @@ export class RoomsComponent implements OnInit {
     // this.roomList.push(room);
     this.roomList = [...this.roomList, room];
   }
+
+  ngAfterViewInit(): void {
+    /***Chanigng headerComponent since it doesnt have any @Input and @Ouptut will give error only in dev environment */
+    // this.headerComponent.title = 'Rooms View';
+    // console.log(this.headerComponent);
+    // console.log((this.headerChildrenComponent.last.title = 'Last Title'));
+  }
+
+  // { static: true } - accessible anywhere
+  @ViewChild(HeaderComponent)
+  headerComponent!: HeaderComponent;
+
+  @ViewChildren(HeaderComponent)
+  headerChildrenComponent!: QueryList<HeaderComponent>;
 }

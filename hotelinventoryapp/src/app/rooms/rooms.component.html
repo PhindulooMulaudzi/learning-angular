@@ -1,4 +1,5 @@
-<h1 >Welcome to {{hotelName}}</h1>
+<!-- <h1 >Welcome to {{hotelName}}</h1> -->
+<app-header></app-header>
 
 <div [hidden]="hideRooms">
 Number of Rooms:
@@ -19,6 +20,6 @@ Number of Rooms:
 </div>
 
 <div *ngIf="rooms.availableRooms > 0">
-<app-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+<app-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
 </div>
 <button class="btn btn-primary" (click)="toggle()">Toggle</button>

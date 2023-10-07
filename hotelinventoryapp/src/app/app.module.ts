@@ -7,20 +7,26 @@ import { RoomsComponent } from './rooms/rooms.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
+import { HeaderComponent } from './header/header.component';
+import { ContainerComponent } from './container/container.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RoomsComponent,
-    RoomsListComponent
+    RoomsListComponent,
+    HeaderComponent,
+    ContainerComponent,
+    EmployeeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
