@@ -2,11 +2,13 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  Inject,
   OnInit,
   Optional,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { localStorageToken } from './localstorage.token';
 import { LoggerService } from './logger.service';
 import { RoomsComponent } from './rooms/rooms.component';
 
@@ -20,6 +22,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.name.nativeElement.innerText = 'Hilton Hotel'; // its static so will work
     //otherwise just always use ngAfterViewInit
     this.loggerService?.log('AooComponent.ngOnInit()');
+    this.localStorage.setItem('name', 'Hilton Hotel');
   }
 
   title = 'hotelinventoryapp';
@@ -33,5 +36,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   @ViewChild('name', { static: true }) name!: ElementRef;
 
-  constructor(@Optional() private loggerService: LoggerService) {}
+  constructor(
+    @Optional() private loggerService: LoggerService,
+    @Inject(localStorageToken) private localStorage: any
+  ) {}
 }
