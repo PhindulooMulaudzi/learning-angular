@@ -10,6 +10,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
 import { Room, RoomType } from './rooms';
 import { RoomsService } from './services/rooms.service';
@@ -46,9 +47,31 @@ export class RoomsComponent
     this.title = 'Rooms List';
   }
 
+  stream: Observable<any> = new Observable((observer) => {
+    observer.next('user1');
+    observer.next('user2');
+    observer.next('user3');
+    observer.next('user4');
+    observer.complete();
+    // observer.error('error');
+  });
+
   ngOnInit(): void {
     // console.log(this.headerComponent);
-    // this.roomList = RoomsService
+    // this.roomList = this.roomService.getRooms();
+    this.roomService.getRooms().subscribe((rooms) => {
+      this.roomList = rooms;
+    });
+
+    this.stream.subscribe({
+      next: (value) => {
+        console.log(value);
+      },
+      complete: () => {
+        console.log('complete');
+      },
+      error: (err) => console.log(err),
+    });
   }
 
   selectRoom(room: RoomType): void {
@@ -58,7 +81,7 @@ export class RoomsComponent
 
   addRoom(): void {
     const room: RoomType = {
-      roomNumber: 4,
+      roomNumber: '4',
       roomType: 'Deluxe Room',
       amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kitchen',
       price: 2000,
@@ -88,6 +111,6 @@ export class RoomsComponent
   headerChildrenComponent!: QueryList<HeaderComponent>;
 
   constructor(@SkipSelf() private roomService: RoomsService) {
-    this.roomList = roomService.getRooms();
+    // this.roomList = roomService.getRooms();
   }
 }
