@@ -8,6 +8,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { InitService } from 'src/init.service';
 import { localStorageToken } from 'src/localstorage.token';
 import { LoggerService } from './logger.service';
 import { RoomsComponent } from './rooms/rooms.component';
@@ -38,6 +39,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(
     @Optional() private loggerService: LoggerService,
-    @Inject(localStorageToken) private localStorage: any
-  ) {}
+    @Inject(localStorageToken) private localStorage: any,
+    private initService: InitService
+  ) {
+    console.log(this.initService.config);
+  }
 }
