@@ -11,7 +11,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { catchError, Observable, of, Subject, Subscription } from 'rxjs';
+import { catchError, map, Observable, of, Subject, Subscription } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
 import { Room, RoomType } from './rooms';
 import { RoomsService } from './services/rooms.service';
@@ -51,6 +51,12 @@ export class RoomsComponent
       console.log(err);
       this.error$.next(err.message);
       return of([]);
+    })
+  );
+
+  roomsCount$ = this.roomService.getRooms$.pipe(
+    map((rooms) => {
+      return rooms.length;
     })
   );
 

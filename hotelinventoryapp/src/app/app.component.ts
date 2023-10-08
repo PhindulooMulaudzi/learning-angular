@@ -8,7 +8,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import { localStorageToken } from './localstorage.token';
+import { localStorageToken } from 'src/localstorage.token';
 import { LoggerService } from './logger.service';
 import { RoomsComponent } from './rooms/rooms.component';
 
