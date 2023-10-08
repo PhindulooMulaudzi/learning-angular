@@ -3,7 +3,7 @@ import { RoomType } from '../rooms';
 import { environment } from '../../../environments/environment.development';
 import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.service';
 import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable, shareReplay } from 'rxjs';
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,9 @@ export class RoomsService {
   }
 
   addRoom(room: RoomType) {
-    return this.http.post<RoomType[]>('/api/rooms', room);
+    return this.http.post<RoomType[]>('/api/rooms', room, {
+      headers: this.headers,
+    });
   }
 
   editRoom(room: RoomType) {
@@ -45,6 +47,8 @@ export class RoomsService {
 
     return this.http.request(request);
   }
-
-  getRooms$ = this.http.get<RoomType[]>('/api/rooms').pipe(shareReplay(1));
+  headers = new HttpHeaders({ token: '1234fe3' });
+  getRooms$ = this.http
+    .get<RoomType[]>('/api/rooms', { headers: this.headers })
+    .pipe(shareReplay(1));
 }
