@@ -20,7 +20,7 @@ import { RoomsComponent } from './rooms/rooms.component';
 })
 export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
-    this.name.nativeElement.innerText = 'Hilton Hotel'; // its static so will work
+    // this.name.nativeElement.innerText = 'Hilton Hotel'; // its static so will work
     //otherwise just always use ngAfterViewInit
     this.loggerService?.log('AooComponent.ngOnInit()');
     this.localStorage.setItem('name', 'Hilton Hotel');
