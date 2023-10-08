@@ -32,7 +32,7 @@ Number of Rooms:
 <!-- The api we are using is not that great, it doesnt keep persistance, so cant repeatedly delete -->
 <!-- <div *ngIf=" !hideRooms"> -->
 <div *ngIf="rooms$ | async as rooms">
-    <app-rooms-list [rooms]="rooms" [title]="title" (selectedRoom)="selectRoom($event)" (deletedRoom)="deletedRoom($event)"></app-rooms-list>
+    <app-rooms-list [rooms]="rooms$ | async" [title]="title" (selectedRoom)="selectRoom($event)" (deletedRoom)="deletedRoom($event)"></app-rooms-list>
 </div>
 
 <!-- <div *ngIf="rooms.availableRooms > 0">
