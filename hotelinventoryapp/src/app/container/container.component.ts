@@ -6,7 +6,7 @@ import { RoomsService } from '../rooms/services/rooms.service';
   selector: 'app-container',
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.scss'],
-  providers: [RoomsService],
+  // providers: [RoomsService],
 })
 export class ContainerComponent implements AfterContentInit {
   ngAfterContentInit(): void {
@@ -18,5 +18,6 @@ export class ContainerComponent implements AfterContentInit {
 
   /***All components inside the container, will use the instance of roomService init in here */
   // We therefore dont need to declare them individually in each componenents provider
-  constructor(@Host() roomService: RoomsService) {}
+  // constructor(@Host() roomService: RoomsService) {}
+  constructor() {}
 }

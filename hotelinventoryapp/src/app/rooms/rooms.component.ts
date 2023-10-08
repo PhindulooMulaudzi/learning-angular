@@ -64,7 +64,7 @@ export class RoomsComponent
   ngOnInit(): void {
     // console.log(this.headerComponent);
     // this.roomList = this.roomService.getRooms();
-    this.roomService.getRooms().subscribe((rooms) => {
+    this.roomService.getRooms$.subscribe((rooms) => {
       this.roomList = rooms;
     });
 
