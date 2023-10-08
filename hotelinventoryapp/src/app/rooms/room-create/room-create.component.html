@@ -4,7 +4,7 @@
 <div *ngIf="successMessage !== ''" class="alert alert-success">
   {{ successMessage }}
 </div>
-<form #form="ngForm" (ngSubmit)="addRoom()">
+<form #form="ngForm" (ngSubmit)="addRoom(form)">
   <div class="form-group">
     <input
       class="form-control"
@@ -28,7 +28,7 @@
       [(ngModel)]="room.amenities"
     />
   </div>
-  <div class="alert alert-danger" *ngIf="roomAmenities.errors">
+  <div class="alert alert-danger" *ngIf="form.dirty && roomAmenities.errors">
     {{ roomAmenities.errors | json }}
   </div>
   <div class="form-group">
