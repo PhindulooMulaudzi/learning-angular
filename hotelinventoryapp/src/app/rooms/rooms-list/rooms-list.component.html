@@ -9,7 +9,7 @@
         <th>Room Amenities</th>
         <th>Checkin Time</th>
         <th>Rating</th>
-        <th>Select Room</th>
+        <th>Book Room</th>
         <th>Delete Room</th>
     </tr>
     <tr [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of rooms; let e=even; let o=odd; let i=index">
@@ -21,9 +21,14 @@
         <td>{{room.amenities | lowercase}}</td>
         <td>{{room.checkinTime | date:'dd/MMM/yy'}}</td>
         <td>{{room.rating | number : '1.0-2' : 'en-us'}}</td>
-        <td>
+        <!-- <td>
             <button class="btn btn-primary" (click)="selectRoom(room)">Select</button>
+        </td> -->
+
+        <td>
+            <button class="btn btn-primary" [routerLink]="['/rooms', room.roomNumber]">Book</button>
         </td>
+
         <td><button class="btn btn-primary" (click)="deleteRoom(room)">Delete</button></td>
     </tr>
 </table>
