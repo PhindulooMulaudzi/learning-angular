@@ -25,9 +25,7 @@ export class RoomsService {
   }
 
   addRoom(room: RoomType) {
-    return this.http.post<RoomType[]>('/api/rooms', room, {
-      headers: this.headers,
-    });
+    return this.http.post<RoomType[]>('/api/rooms', room);
   }
 
   editRoom(room: RoomType) {
@@ -47,8 +45,6 @@ export class RoomsService {
 
     return this.http.request(request);
   }
-  headers = new HttpHeaders({ token: '1234fe3' });
-  getRooms$ = this.http
-    .get<RoomType[]>('/api/rooms', { headers: this.headers })
-    .pipe(shareReplay(1));
+  // headers = new HttpHeaders({ token: '1234fe3' });
+  getRooms$ = this.http.get<RoomType[]>('/api/rooms').pipe(shareReplay(1));
 }
