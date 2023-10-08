@@ -11,7 +11,7 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { catchError, Observable, of, Subject, Subscription } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
 import { Room, RoomType } from './rooms';
 import { RoomsService } from './services/rooms.service';
@@ -41,8 +41,18 @@ export class RoomsComponent
   selectedRoom!: RoomType;
 
   subscription!: Subscription;
+  error$ = new Subject<string>();
 
-  rooms$ = this.roomService.getRooms$;
+  getError$ = this.error$.asObservable();
+
+  /***error handling subscription async pipe */
+  rooms$ = this.roomService.getRooms$.pipe(
+    catchError((err) => {
+      console.log(err);
+      this.error$.next(err.message);
+      return of([]);
+    })
+  );
 
   rooms: Room = {
     totalRooms: 20,
