@@ -27,7 +27,7 @@ export class RoomsComponent
   // this.headerComponent.title = 'Rooms View';
   // console.log(this.headerComponent);
   // console.log((this.headerChildrenComponent.last.title = 'Last Title'));
-
+  totalBytes: number = 0;
   ngAfterViewChecked(): void {}
 
   ngDoCheck(): void {
@@ -80,7 +80,25 @@ export class RoomsComponent
 
     this.roomService.getPhotos().subscribe((event) => {
       switch (event.type) {
-        case HttpEventType.Response:
+        case HttpEventType.Sent: {
+          console.log('Request has been made!');
+          break;
+        }
+
+        case HttpEventType.ResponseHeader: {
+          console.log('Request success!');
+          break;
+        }
+
+        case HttpEventType.DownloadProgress: {
+          this.totalBytes += event.loaded;
+          break;
+        }
+
+        case HttpEventType.Response: {
+          console.log(event.body);
+          break;
+        }
       }
     });
   }
