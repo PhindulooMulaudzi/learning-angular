@@ -33,6 +33,7 @@ export class RoomsService {
   }
 
   deleteRoom(room: RoomType) {
+    console.log('Call to delete room service has been made...');
     return this.http.delete<RoomType[]>(`/api/rooms/${room.roomNumber}`);
   }
 

@@ -46,13 +46,14 @@ export class RoomsComponent
   getError$ = this.error$.asObservable();
 
   /***error handling subscription async pipe */
-  rooms$ = this.roomService.getRooms$.pipe(
-    catchError((err) => {
-      console.log(err);
-      this.error$.next(err.message);
-      return of([]);
-    })
-  );
+  /****This method not working in a responive manner after refactor */
+  // rooms$ = this.roomService.getRooms$.pipe(
+  //   catchError((err) => {
+  //     console.log(err);
+  //     this.error$.next(err.message);
+  //     return of([]);
+  //   })
+  // );
 
   roomsCount$ = this.roomService.getRooms$.pipe(
     map((rooms) => {
@@ -85,9 +86,9 @@ export class RoomsComponent
     // console.log(this.headerComponent);
     // this.roomList = this.roomService.getRooms();
 
-    // this.roomService.getRooms$.subscribe((rooms) => {
-    //   this.roomList = rooms;
-    // });
+    this.roomService.getRooms$.subscribe((rooms) => {
+      this.roomList = rooms;
+    });
 
     // this.subscription = this.roomService.getRooms$.subscribe((rooms) => {
     //   this.roomList = rooms;
@@ -137,6 +138,7 @@ export class RoomsComponent
     this.roomService.deleteRoom(room).subscribe((data) => {
       this.roomList = data;
     });
+    console.log('Delete method invoked...');
   }
 
   addRoom(): void {

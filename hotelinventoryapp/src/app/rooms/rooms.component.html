@@ -2,45 +2,52 @@
 <app-header></app-header>
 
 <h1>
-    {{getError$ | async}}
+  {{ getError$ | async }}
 </h1>
 
-<h1>
-    Number of rooms: {{roomsCount$ | async}}
-</h1>
+<h1>Number of rooms: {{ roomsCount$ | async }}</h1>
 
 <!-- {{rooms$ | async | json}} -->
 
 <div [hidden]="hideRooms">
-Number of Rooms:
-<div [ngStyle]="{'color': rooms.availableRooms ? 'blue':'red'}" [innerText]="numberOfRooms">
-
-</div>
+  Number of Rooms:
+  <div
+    [ngStyle]="{ color: rooms.availableRooms ? 'blue' : 'red' }"
+    [innerText]="numberOfRooms"
+  ></div>
 </div>
 
 <!-- {{rooms?.availableRooms ?? 'No rooms'}} -->
 <!-- {{RoomType | json}} -->
 
 <div *ngIf="selectedRoom">
-    {{selectedRoom | json}}
+  {{ selectedRoom | json }}
 </div>
 
 <div>
-    <button class="btn btn-primary" (click)="addRoom()">Add Room</button>
+  <button class="btn btn-primary" (click)="addRoom()">Add Room</button>
 </div>
 
 <!-- The api we are using is not that great, it doesnt keep persistance, so cant repeatedly delete -->
 <!-- <div *ngIf=" !hideRooms"> -->
-<div *ngIf="rooms$ | async as rooms">
-    <app-rooms-list [rooms]="rooms$ | async" [title]="title" (selectedRoom)="selectRoom($event)" (deletedRoom)="deletedRoom($event)"></app-rooms-list>
-</div>
-
-<!-- <div *ngIf="rooms.availableRooms > 0">
-<app-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+<!-- <div *ngIf="rooms$ | async as rooms">
+  <app-rooms-list
+    [rooms]="rooms$ | async"
+    [title]="title"
+    (selectedRoom)="selectRoom($event)"
+    (deletedRoom)="deletedRoom($event)"
+  ></app-rooms-list>
 </div> -->
+
+<div *ngIf="rooms.availableRooms > 0">
+  <app-rooms-list
+    [rooms]="roomList"
+    [title]="title"
+    (selectedRoom)="selectRoom($event)"
+    (deletedRoom)="deletedRoom($event)"
+  ></app-rooms-list>
+</div>
 <button class="btn btn-primary" (click)="toggle()">Toggle</button>
-<br>
+<br />
 <button class="btn btn-primary" (click)="editRoom()">Edit Room</button>
-<h1>
-    {{totalBytes}} loaded
-</h1>
+<h1>{{ totalBytes }} loaded</h1>
