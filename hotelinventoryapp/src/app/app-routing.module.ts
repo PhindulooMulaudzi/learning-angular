@@ -12,6 +12,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./rooms/rooms.module').then((m) => m.RoomsModule),
     canActivate: [LoginGuard],
+    canLoad: [LoginGuard],
   },
   // { path: 'rooms/add', component: RoomCreateComponent },
   // { path: 'rooms/:number', component: RoomsBookingComponent },

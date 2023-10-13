@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  CanLoad,
   Router,
   RouterStateSnapshot,
   UrlTree,
@@ -25,5 +26,16 @@ export class LoginGuard implements CanActivate {
     return this.loginService.isLoggedIn
       ? true
       : this.router.navigate(['/login']);
+  }
+
+  canLoad(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    return this.loginService.isLoggedIn;
   }
 }
