@@ -15,10 +15,12 @@ export class LoginComponent {
   constructor(private route: Router, private loginService: LoginService) {}
 
   login(form: NgForm) {
-    if (this.loginService.login('admin@email.com', 'admin')) {
+    if (this.loginService.login(this.username, this.password)) {
       alert('Login Succesful');
       // this.route.navigate(['rooms', 'add']);
       this.route.navigateByUrl('/rooms');
+    } else {
+      alert('Login Failed');
     }
   }
 }

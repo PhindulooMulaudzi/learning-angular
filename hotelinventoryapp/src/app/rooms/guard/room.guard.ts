@@ -1,29 +1,27 @@
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
+  CanActivateChild,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LoginService } from '../login/login.service';
+import { LoginService } from 'src/app/login/login.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LoginGuard implements CanActivate {
-  constructor(private loginService: LoginService, private router: Router) {}
-  canActivate(
-    route: ActivatedRouteSnapshot,
+export class RoomGuard implements CanActivateChild {
+  constructor(private loginService: LoginService) {}
+  canActivateChild(
+    childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.loginService.isLoggedIn
-      ? true
-      : this.router.navigate(['/login']);
+    console.log(this.loginService.isAdmin);
+    return this.loginService.isAdmin;
   }
 }
