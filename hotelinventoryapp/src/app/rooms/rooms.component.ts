@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { catchError, map, Observable, of, Subject, Subscription } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
+import { ConfigService } from '../services/config.service';
 import { Room, RoomType } from './rooms';
 import { RoomsService } from './services/rooms.service';
 
@@ -195,7 +196,10 @@ export class RoomsComponent
   @ViewChildren(HeaderComponent)
   headerChildrenComponent!: QueryList<HeaderComponent>;
 
-  constructor(@SkipSelf() private roomService: RoomsService) {
+  constructor(
+    @SkipSelf() private roomService: RoomsService,
+    private configService: ConfigService
+  ) {
     // this.roomList = roomService.getRooms();
   }
 
