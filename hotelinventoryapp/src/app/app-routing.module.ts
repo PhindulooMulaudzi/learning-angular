@@ -9,9 +9,13 @@ import { RoomsComponent } from './rooms/rooms.component';
 
 const routes: Routes = [
   { path: 'employee', component: EmployeeComponent },
-  { path: 'rooms', component: RoomsComponent },
-  { path: 'rooms/add', component: RoomCreateComponent },
-  { path: 'rooms/:number', component: RoomsBookingComponent },
+  {
+    path: 'rooms',
+    loadChildren: () =>
+      import('./rooms/rooms.module').then((m) => m.RoomsModule),
+  },
+  // { path: 'rooms/add', component: RoomCreateComponent },
+  // { path: 'rooms/:number', component: RoomsBookingComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: NotfoundComponent },
