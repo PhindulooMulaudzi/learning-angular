@@ -5,9 +5,14 @@ import { RoomsBookingComponent } from './rooms-booking/rooms-booking.component';
 import { RoomsComponent } from './rooms.component';
 
 const routes: Routes = [
-  { path: 'rooms', component: RoomsComponent },
-  { path: 'rooms/add', component: RoomCreateComponent },
-  { path: 'rooms/:number', component: RoomsBookingComponent },
+  {
+    path: 'rooms',
+    component: RoomsComponent,
+    children: [
+      { path: 'add', component: RoomCreateComponent },
+      { path: ':number', component: RoomsBookingComponent },
+    ],
+  },
 ];
 
 @NgModule({

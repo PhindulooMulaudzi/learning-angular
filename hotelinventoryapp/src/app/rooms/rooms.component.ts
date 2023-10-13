@@ -47,13 +47,13 @@ export class RoomsComponent
 
   /***error handling subscription async pipe */
   /****This method not working in a responive manner after refactor */
-  // rooms$ = this.roomService.getRooms$.pipe(
-  //   catchError((err) => {
-  //     console.log(err);
-  //     this.error$.next(err.message);
-  //     return of([]);
-  //   })
-  // );
+  rooms$ = this.roomService.getRooms$.pipe(
+    catchError((err) => {
+      console.log(err);
+      this.error$.next(err.message);
+      return of([]);
+    })
+  );
 
   roomsCount$ = this.roomService.getRooms$.pipe(
     map((rooms) => {

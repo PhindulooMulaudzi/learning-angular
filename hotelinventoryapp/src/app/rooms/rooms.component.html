@@ -7,7 +7,9 @@
 
 <h1>Number of rooms: {{ roomsCount$ | async }}</h1>
 
-<!-- {{rooms$ | async | json}} -->
+<router-outlet></router-outlet>
+
+<!-- {{ rooms$ | async | json }} -->
 
 <div [hidden]="hideRooms">
   Number of Rooms:
@@ -24,8 +26,12 @@
   {{ selectedRoom | json }}
 </div>
 
-<div>
+<!-- <div>
   <button class="btn btn-primary" (click)="addRoom()">Add Room</button>
+</div> -->
+
+<div>
+  <button class="btn btn-primary" routerLink="add">Add Room</button>
 </div>
 
 <!-- The api we are using is not that great, it doesnt keep persistance, so cant repeatedly delete -->
